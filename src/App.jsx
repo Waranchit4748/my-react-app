@@ -8,14 +8,20 @@ import Header from './Header';
 import Button from './Button';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { Provider, useDispatch, useSelector } from 'react-redux';
+import Posts from './components/Posts';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 function Home() {
-  return (<div>
-     <Header title="React Workshop" />
-     <h2>หน้าหลัก</h2>
-     <p>เรียนรู้พื้นฐานของ React ผ่านการปฏิบัติจริง</p>
+  return (
+    <QueryClientProvider client={queryClient}>
+    <div className="container mx-auto p-6">
+      <Header title="React Workshop" />
+      <p className="mb-4">เรียนรู้พื้นฐานของ React ผ่านการปฏิบัติจริง</p>
+      <Posts />
     </div>
-  )
+  </QueryClientProvider>
+  );
 }
 function About() {
   const handleClick = () => {
